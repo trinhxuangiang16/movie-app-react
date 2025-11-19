@@ -1,3 +1,3 @@
 export default function HomePage() {
-  return <div>HomePage</div>;
+  return <div style={{ height: "100vh", paddingTop: 120 }}>HomePage</div>;
 }

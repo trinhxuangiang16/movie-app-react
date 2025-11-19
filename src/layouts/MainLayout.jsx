@@ -6,8 +6,8 @@ export const MainLayout = () => {
   return (
     <>
       <Header />
-      <div style={{ height: "100vh" }}>
-        <main className="bg-primary">
+      <div>
+        <main className="outlet">
           <Outlet />
         </main>
       </div>

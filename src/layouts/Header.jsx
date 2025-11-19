@@ -1,16 +1,22 @@
-import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import "./layout.css";
 
-export default function Header() {
+function Header() {
   return (
-    <div
-      style={{
-        width: "100%",
-        backgroundColor: "black",
-        color: "white",
-        height: 50,
-      }}
-    >
-      <h1>Header</h1>
+    <div className="header">
+      <Link to={"/"} className="logo">
+        Movi<div>.E</div>
+      </Link>
+      <div className="nav">
+        <NavLink to="/" end>
+          Home
+        </NavLink>
+        <NavLink to="/services">Services</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+      </div>
     </div>
   );
 }
+
+export default Header;
