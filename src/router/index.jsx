@@ -1,7 +1,7 @@
 import { MainLayout } from "../layouts/MainLayout";
 import HomePage from "../features/home/component/HomePage";
 import SignInPage from "../features/signIn/component/SignInPage";
-import SignupPage from "../features/signUp/component/SignUpPage";
+import SignUpPage from "../features/signUp/component/SignUpPage";
 
 export const routes = [
   {
@@ -18,7 +18,7 @@ export const routes = [
       },
       {
         path: "/sign-up",
-        element: <SignupPage />,
+        element: <SignUpPage />,
       },
     ],
   },

@@ -2,12 +2,19 @@ import { createRoot } from "react-dom/client";
 
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
-// import { Provider as ReduxProvider } from 'react-redux'
+import { Provider } from "react-redux";
+import homeSlice from "./features/home/redux/homeSlice.js";
+import { configureStore } from "@reduxjs/toolkit";
+const reduxStore = configureStore({
+  reducer: {
+    homeSlice: homeSlice,
+  },
+});
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    {/* <ReduxProvider store={store}> */}
-    <App />
-    {/* </ReduxProvider> */}
+    <Provider store={reduxStore}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
