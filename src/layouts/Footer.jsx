@@ -21,7 +21,7 @@ export default function Footer() {
           About
         </Link>
       </div>
-      <p className="text-center text-body-secondary">© 2025 Movi.E, Inc</p>
+      <p className="text-center">© 2025 Movi.E, Inc</p>
     </div>
   );
 }

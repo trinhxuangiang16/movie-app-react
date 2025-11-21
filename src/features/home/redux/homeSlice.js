@@ -44,6 +44,7 @@ const homeSlice = createSlice({
       state.schedule = action.payload;
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getBanner.pending, (state) => {

@@ -146,12 +146,6 @@
   cursor: pointer;
 }
 
-.title-rap {
-  background-color: black;
-  color: white;
-  border-color: white;
-}
-
 .card-rap:hover {
   text-shadow: 0 0 2px #ffffff, 0 0 5px #00f0ff, 0 0 10px #00f0ff,
     0 0 20px #00f0ff50;
@@ -177,6 +171,7 @@
 
 .movie-wrap-has-time {
   margin-top: 50px;
+  width: 80%;
 }
 
 .movie-and-time div {
@@ -185,3 +180,100 @@
   display: flex;
   width: 100%;
 }
+
+.time-schedule {
+  color: #005d63;
+}
+
+/* Lịch */
+.title-movie {
+  display: flex;
+  flex-direction: column;
+}
+.title-movie {
+  padding: 10px 20px 10px 20px;
+}
+.title-movie h3 {
+  color: #4c6ef5;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.wrap-time-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* Mỗi item = 1/6 hàng */
+.time-item {
+  flex: 0 0 calc(16.66% - 12px); /* 6 item 1 hàng */
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(145deg, #3b5bdb, #7048e8); /* xanh → tím */
+  color: white;
+  padding: 14px 10px;
+  border-radius: 10px;
+  text-align: center;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: 0.25s ease;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.time-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 18px rgba(80, 40, 200, 0.25);
+
+  background: linear-gradient(145deg, #4c6ef5, #845ef7);
+  z-index: 20;
+  position: relative;
+}
+.wrap-time-box:hover .slick-list {
+  overflow: visible !important;
+}
+
+.time-box .date {
+  font-size: 18px;
+  font-weight: 700;
+  /* opacity: 0.9; */
+  margin-bottom: 4px;
+  color: #ffffffdb;
+  background-color: transparent;
+  text-shadow: 0 4px 12px rgb(72, 72, 72);
+}
+
+.time-box .hour {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffffdb;
+  background-color: transparent;
+  text-shadow: 0 4px 12px rgb(72, 72, 72);
+}
+
+.time-box .date,
+.time-box .hour {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.slick-slider div .time-item .time-box {
+  width: 120px;
+}
+
+.slick-list {
+  height: 80px;
+}
+
+/* .slick-slide {
+  position: relative;
+} */

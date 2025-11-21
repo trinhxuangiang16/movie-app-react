@@ -84,10 +84,11 @@
 /* Footer */
 
 .footer {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+background-color: #1B1724; /* Tím Đen Sâu */
+  color: #E0E0E0;           /* Chữ Xám Trắng */
+  padding: 40px 0;
+  border-top: 1px solid #3A314A; /* Đường viền phân cách mỏng */
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2); /
 }
 
 .footer .footer-content {
@@ -96,13 +97,24 @@
   border-bottom: 1px solid #dee2e6;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
+   color: #C0A4FF; 
+  
 }
 
 .footer .footer-item {
   display: block;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  color: #6c757d;
   text-decoration: none;
   transition: 0.2s;
+  color: #C0A4FF; /* Màu link có thể dùng màu tím nhạt, nổi bật nhẹ */
+  text-decoration: none;
+}
+
+.footer .footer-item:hover {
+  color: #FFFFFF;
+}
+
+.footer p {
+   color: #C0A4FF; 
 }
