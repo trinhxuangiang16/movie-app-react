@@ -1,0 +1,37 @@
+.sign-in {
+  height: 100vh;
+}
+
+.form {
+  width: 60%;
+  margin: 120px auto 0 auto;
+  height: fit-content;
+  /* background-color: rgba(0, 0, 0, 0.741); */
+  backdrop-filter: blur(1500px) !important;
+  border: white 3px solid;
+  padding: 4% 6%;
+  color: white;
+  border-radius: 30px;
+}
+
+.btn-sign-in {
+  color: #ffffff;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+}
+
+.btn-sign-in:hover {
+  background: linear-gradient(135deg, #7b32d1 0%, #3a8aff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-sign-in:active {
+  box-shadow: 0 2px 30px rgba(225, 0, 255, 0.782);
+}
