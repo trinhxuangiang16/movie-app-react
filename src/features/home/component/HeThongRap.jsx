@@ -9,6 +9,7 @@ import {
 } from "../redux/homeSlice";
 import { getDateAndTime } from "../hook/useGetDateAndTime";
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
 
 export default function HeThongRap() {
   const rapPhim = useSelector((state) => state.homeSlice.heThongRap);
@@ -17,25 +18,32 @@ export default function HeThongRap() {
   const cardLichPhim = useSelector((state) => state.homeSlice.schedule) || [];
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getHeThongRap());
     dispatch(getLichChieuHeThong());
   }, []);
 
+  // --- PHẦN SỬA ĐỔI 1: LẤY THÊM MA_PHIM ---
   let handlePhimClickToGetInfo = (item) => {
     let data = item.lstLichChieuTheoPhim;
     dispatch(getLichChieuTheoPhimClick(item.lstLichChieuTheoPhim));
+
     let ten = item.tenPhim;
     let imag = item.hinhAnh;
-    let maP = item.maPhim;
+
+    let maPhim = item.maPhim; // 1. Lấy mã phim từ dữ liệu item
 
     const result = [
       {
         tenPhim: ten,
         hinhAnh: imag,
-        maPhim: maP,
-        time: data.map((item) => getDateAndTime(item.ngayChieuGioChieu)),
+        maPhim: maPhim, // 2. Lưu mã phim vào kết quả để dùng ở dưới
+        time: data.map((item) => ({
+          ...getDateAndTime(item.ngayChieuGioChieu),
+          maLichChieu: item.maLichChieu,
+        })),
       },
     ];
 
@@ -48,8 +56,8 @@ export default function HeThongRap() {
     infinite: false,
     speed: 300,
     slidesToShow: 7,
-    slidesToScroll: 1, // Giữ nguyên 1 nếu bạn có thể cần nút điều hướng
-    swipeToSlide: true, // **QUAN TRỌNG:** Cho phép dừng chính xác tại slide kết thúc vuốt
+    slidesToScroll: 1,
+    swipeToSlide: true,
     draggable: true,
     touchThreshold: 20,
     focusOnSelect: true,
@@ -64,12 +72,11 @@ export default function HeThongRap() {
         <div className="row  mb-5">
           {rapPhim.map((item) => {
             return (
-              <div className="col-2">
+              <div className="col-2" key={item.maHeThongRap}>
                 <div
                   className="nameCinema"
                   onClick={() => {
                     dispatch(getMaHeThongRapToFilter(item.maHeThongRap));
-                    console.log(item.maHeThongRap);
                   }}
                 >
                   <img src={item.logo} alt="name of cinema" />
@@ -94,6 +101,7 @@ export default function HeThongRap() {
               {cumRap.map((item) => {
                 return (
                   <div
+                    key={item.maCumRap}
                     onClick={() => {
                       dispatch(getDSPhimTungRap(item.danhSachPhim));
                     }}
@@ -115,7 +123,7 @@ export default function HeThongRap() {
         <div className="row">
           {dsPhim.map((item) => {
             return (
-              <div className="col-2 mb-5">
+              <div className="col-2 mb-5" key={item.maPhim}>
                 <div className="card card-movie h-100 border-0">
                   <div style={{ position: "relative" }}>
                     <img
@@ -181,10 +189,18 @@ export default function HeThongRap() {
                 <div className="title-movie">
                   <h3>{cardLichPhim[0].tenPhim}</h3>
                   <div className="wrap-time-box">
-                    {cardLichPhim[0].length <= 6 ? (
+                    {/* --- PHẦN SỬA ĐỔI 2: SỬA ONCLICK ĐỂ CHUYỂN SANG DETAIL --- */}
+
+                    {cardLichPhim[0].time.length <= 6 ? (
                       cardLichPhim[0].time.map((item, index) => (
                         <div key={index} className="time-item">
-                          <div className="time-box">
+                          <div
+                            className="time-box"
+                            onClick={() => {
+                              // Thay vì navigate tới ticketroom, ta navigate tới detail kèm mã phim
+                              navigate(`/detail/${cardLichPhim[0].maPhim}`);
+                            }}
+                          >
                             <div className="date">{item.date}</div>
                             <div className="hour">{item.time}</div>
                           </div>
@@ -194,7 +210,13 @@ export default function HeThongRap() {
                       <Slider {...settings}>
                         {cardLichPhim[0].time.map((item, index) => (
                           <div key={index} className="time-item">
-                            <div className="time-box">
+                            <div
+                              className="time-box"
+                              onClick={() => {
+                                // Thay vì navigate tới ticketroom, ta navigate tới detail kèm mã phim
+                                navigate(`/detail/${cardLichPhim[0].maPhim}`);
+                              }}
+                            >
                               <div className="date">{item.date}</div>
                               <div className="hour">{item.time}</div>
                             </div>
@@ -202,6 +224,8 @@ export default function HeThongRap() {
                         ))}
                       </Slider>
                     )}
+
+                    {/* ------------------------------------------------------- */}
                   </div>
                 </div>
               </div>
