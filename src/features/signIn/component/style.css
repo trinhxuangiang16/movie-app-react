@@ -6,8 +6,8 @@
   width: 60%;
   margin: 120px auto 0 auto;
   height: fit-content;
-  /* background-color: rgba(0, 0, 0, 0.741); */
-  backdrop-filter: blur(1500px) !important;
+  background-color: rgba(0, 0, 0, 0.741);
+
   border: white 3px solid;
   padding: 4% 6%;
   color: white;
@@ -34,4 +34,9 @@
 
 .btn-sign-in:active {
   box-shadow: 0 2px 30px rgba(225, 0, 255, 0.782);
+}
+
+.form-text {
+  color: rgb(255, 85, 85);
+  font-style: italic;
 }

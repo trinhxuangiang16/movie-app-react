@@ -45,7 +45,11 @@
   transition: 0.3s ease;
   padding: 8px;
   border-radius: 10px;
+
+  font-weight: 600;
+
 }
+
 
 .nav a:hover {
   color: #fff;
@@ -53,6 +57,7 @@
     0 0 40px #ff944d, 0 0 80px #ff944d;
   border-radius: 10px;
   padding: 8px;
+  
 }
 
 .nav a.active {
@@ -61,6 +66,12 @@
   text-shadow: 0 0 5px #ff4d2e, 0 0 10px #ff4d2e;
 }
 
+
+.nav .wellcome {
+  color: white !important;
+  text-shadow: none !important;
+}
+ 
 /* MainLayout */
 .outlet {
   background-color: rgb(0, 0, 37);

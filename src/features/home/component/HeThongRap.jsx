@@ -28,11 +28,13 @@ export default function HeThongRap() {
     dispatch(getLichChieuTheoPhimClick(item.lstLichChieuTheoPhim));
     let ten = item.tenPhim;
     let imag = item.hinhAnh;
+    let maP = item.maPhim;
 
     const result = [
       {
         tenPhim: ten,
         hinhAnh: imag,
+        maPhim: maP,
         time: data.map((item) => getDateAndTime(item.ngayChieuGioChieu)),
       },
     ];

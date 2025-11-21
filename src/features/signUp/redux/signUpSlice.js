@@ -1,23 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAcountToSignIn } from "./signInAsyncThunk";
+import { getAcountToSignIn } from "../../signIn/redux/signInAsyncThunk";
 
 const initialState = {
   isLoading: false,
-  acount: localStorage.getItem("CurrentAcount")
-    ? JSON.parse(localStorage.getItem("CurrentAcount"))
-    : {},
+  user: {},
   error: null,
 };
 
-const signInSlice = createSlice({
-  name: "signInSlice",
+const signUpSlice = createSlice({
+  name: "signUpSlice",
   initialState,
-  reducers: {
-    logoutAction: (state, action) => {
-      state.acount = {};
-      localStorage.removeItem("CurrentAcount");
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getAcountToSignIn.pending, (state) => {
@@ -25,10 +18,10 @@ const signInSlice = createSlice({
         state.error = null;
       })
       .addCase(getAcountToSignIn.fulfilled, (state, action) => {
-        state.acount = action.payload;
+        state.user = action.payload;
         state.isLoading = false;
         state.error = null;
-        localStorage.setItem("CurrentAcount", JSON.stringify(action.payload));
+        // localStorage.setItem("CurrentAcount", JSON.stringify(action.payload));
       })
       .addCase(getAcountToSignIn.rejected, (state, action) => {
         state.isLoading = false;
@@ -37,6 +30,6 @@ const signInSlice = createSlice({
   },
 });
 
-export const { logoutAction } = signInSlice.actions;
+export const {} = signUpSlice.actions;
 
-export default signInSlice.reducer;
+export default signUpSlice.reducer;
