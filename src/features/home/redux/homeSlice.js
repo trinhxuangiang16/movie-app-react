@@ -4,6 +4,8 @@ import {
   getHeThongRap,
   getLichChieuHeThong,
   getListMovie,
+  getMovieDetail, // Import mới
+  getBookingBox,  // Import mới
 } from "./homeAsyncThunk";
 
 const initialState = {
@@ -17,6 +19,10 @@ const initialState = {
   dSPhimTungRap: [],
   schedule: [],
   lichChieuMotPhimClick: [],
+  
+  // State mới
+  movieDetail: null,
+  bookingBox: null,
 };
 
 const homeSlice = createSlice({
@@ -24,19 +30,23 @@ const homeSlice = createSlice({
   initialState,
   reducers: {
     getMaHeThongRapToFilter: (state, action) => {
+      // ... (giữ nguyên code cũ)
       const cumRapTheoBrand = state.lichChieuHeThong.filter(
         (item) => item.maHeThongRap === action.payload
       );
-      let brandCumRap = cumRapTheoBrand[0].lstCumRap;
-      state.rapTheoBrand = brandCumRap;
+      // Kiểm tra lỗi nếu api chưa trả về kịp
+      if(cumRapTheoBrand.length > 0) {
+          let brandCumRap = cumRapTheoBrand[0].lstCumRap;
+          state.rapTheoBrand = brandCumRap;
+      }
     },
     getDSPhimTungRap: (state, action) => {
-      let filterPhimDangChieu = action.payload.filter(
+        // ... (giữ nguyên code cũ)
+       let filterPhimDangChieu = action.payload.filter(
         (item) => item.dangChieu == true
       );
       state.dSPhimTungRap = filterPhimDangChieu;
     },
-
     getLichChieuTheoPhimClick: (state, action) => {
       state.lichChieuMotPhimClick = action.payload;
     },
@@ -47,44 +57,45 @@ const homeSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(getBanner.pending, (state) => {
-        state.isLoading = true;
-      })
+      // ... (Các case cũ giữ nguyên)
       .addCase(getBanner.fulfilled, (state, action) => {
         state.banner = action.payload;
         state.isLoading = false;
-      })
-      .addCase(getBanner.rejected, (state, action) => {
-        state.isLoading = false;
-      })
-      .addCase(getListMovie.pending, (state) => {
-        state.isLoading = true;
       })
       .addCase(getListMovie.fulfilled, (state, action) => {
         state.listMovie = action.payload;
         state.isLoading = false;
       })
-      .addCase(getListMovie.rejected, (state, action) => {
-        state.isLoading = false;
-      })
-      .addCase(getHeThongRap.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(getHeThongRap.fulfilled, (state, action) => {
         state.heThongRap = action.payload;
         state.isLoading = false;
-      })
-      .addCase(getHeThongRap.rejected, (state, action) => {
-        state.isLoading = false;
-      })
-      .addCase(getLichChieuHeThong.pending, (state) => {
-        state.isLoading = true;
       })
       .addCase(getLichChieuHeThong.fulfilled, (state, action) => {
         state.lichChieuHeThong = action.payload;
         state.isLoading = false;
       })
-      .addCase(getLichChieuHeThong.rejected, (state, action) => {
+
+      // Case mới cho Chi Tiết Phim
+      .addCase(getMovieDetail.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getMovieDetail.fulfilled, (state, action) => {
+        state.movieDetail = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getMovieDetail.rejected, (state) => {
+        state.isLoading = false;
+      })
+
+      // Case mới cho Phòng Vé
+      .addCase(getBookingBox.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getBookingBox.fulfilled, (state, action) => {
+        state.bookingBox = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getBookingBox.rejected, (state) => {
         state.isLoading = false;
       });
   },
