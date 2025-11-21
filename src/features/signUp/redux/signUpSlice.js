@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAcountToSignIn } from "../../signIn/redux/signInAsyncThunk";
+import { postUserAction } from "./signUpAsyncThunk";
 
 const initialState = {
   isLoading: false,
@@ -10,26 +10,29 @@ const initialState = {
 const signUpSlice = createSlice({
   name: "signUpSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    removeCurrentUserAction: (state, action) => {
+      state.user = {};
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getAcountToSignIn.pending, (state) => {
+      .addCase(postUserAction.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getAcountToSignIn.fulfilled, (state, action) => {
+      .addCase(postUserAction.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoading = false;
         state.error = null;
-        // localStorage.setItem("CurrentAcount", JSON.stringify(action.payload));
       })
-      .addCase(getAcountToSignIn.rejected, (state, action) => {
+      .addCase(postUserAction.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
   },
 });
 
-export const {} = signUpSlice.actions;
+export const { removeCurrentUserAction } = signUpSlice.actions;
 
 export default signUpSlice.reducer;

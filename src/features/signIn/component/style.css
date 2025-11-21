@@ -2,7 +2,7 @@
   height: 100vh;
 }
 
-.form {
+.sign-in .form {
   width: 60%;
   margin: 120px auto 0 auto;
   height: fit-content;

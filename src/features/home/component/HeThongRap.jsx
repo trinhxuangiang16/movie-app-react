@@ -207,7 +207,7 @@ export default function HeThongRap() {
                         </div>
                       ))
                     ) : (
-                      <Slider {...settings}>
+                      <Slider {...settings} className="thin-scrollbar">
                         {cardLichPhim[0].time.map((item, index) => (
                           <div key={index} className="time-item">
                             <div
