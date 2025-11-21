@@ -3,6 +3,7 @@ import { getListMovie } from "../redux/homeAsyncThunk";
 import { useEffect } from "react";
 import "./style.css";
 import { BsCaretLeftSquareFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function ListPhim() {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export default function ListPhim() {
         <div className="row">
           {listData.slice(3, 15).map((item) => {
             return (
-              <div className="col-2 mb-5">
+              <div className="col-2 mb-5" key={item.maPhim}>
                 <div className="card card-movie h-100 border-0">
                   <div style={{ position: "relative" }}>
                     <img
@@ -67,12 +68,18 @@ export default function ListPhim() {
                         2D
                       </span>
                     </div>
-                    <h6
-                      className="card-title fw-bold text-success mb-1 single-line-ellipsis"
-                      style={{ fontSize: "1rem", cursor: "pointer" }}
-                    >
-                      {item.tenPhim}
-                    </h6>
+                    
+                    {/* Bắt đầu phần chỉnh sửa: Bọc Link cho tên phim */}
+                    <Link to={`/detail/${item.maPhim}`} className="text-decoration-none">
+                        <h6
+                        className="card-title fw-bold text-success mb-1 single-line-ellipsis"
+                        style={{ fontSize: "1rem", cursor: "pointer" }}
+                        >
+                        {item.tenPhim}
+                        </h6>
+                    </Link>
+                    {/* Kết thúc phần chỉnh sửa */}
+
                     <p
                       className="card-text text-muted"
                       style={{ fontSize: "0.8rem" }}
